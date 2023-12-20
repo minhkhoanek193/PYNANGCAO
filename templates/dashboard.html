@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .users-chart {
+            margin-top: 20px;
+        }
+</style>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Home PageADMIN{% endblock %}
+    {% block content %}
+    <section>
+        <div class="dashboard-card">
+            <h2>Welcome to the Admin Dashboard</h2>
+        </div>
+        
+    </section>
+    {% endblock %}
+</body>
+</html>

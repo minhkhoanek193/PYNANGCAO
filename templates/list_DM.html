@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>  {% block title %}danh mục{% endblock %}</title>
+  <style>
+.fixhinh img{
+            width: 236px;
+        }
+  </style>
+</head>
+<body>
+    
+
+  
+    {% block content %}
+    <section>
+<table>
+<h2> DANH MỤC </h2> <button type="button" class="btn btn-primary edit-button"><a href="/admin/themdanhmuc">Thêm danh mục</a></button>   
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Danh mục</th>
+      <th>Hình ảnh</th>
+      <th>Người đăng</th>
+      <th>Ngày đăng</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody class="fixhinh">
+    {% for danh_muc_bai_viet in danh_muc_bai_viets %}
+
+    <tr>
+      <td>{{ danh_muc_bai_viet.id_DM }}</td>
+      <td>{{ danh_muc_bai_viet.ten_DM }}</td>
+      <td><img src="{{ url_for('static', filename='img/' + danh_muc_bai_viet.hinh_anh_DM) }}" width="130" alt="Hình ảnh"></td>
+      
+      <td>ADMIN</td>
+      <td>{{ danh_muc_bai_viet.ngay_tao_DM }}</td>
+ 
+        <td class="action-buttons">
+            <button type="button" class="btn btn-primary edit-button"><a href="{{ url_for('sua_danh_muc', id=danh_muc_bai_viet.id_DM) }}">Sửa</a></button>    
+            <button type="button" class="btn btn-danger edit-button"><a href="{{ url_for('xoa_danh_muc', id=danh_muc_bai_viet.id_DM) }}">Xóa</a></button>
+        </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+</section>
+{% endblock %}

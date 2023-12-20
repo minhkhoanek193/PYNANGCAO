@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <style>
+        
+        .form-container {
+            background-color: #333;
+                color: #fff;
+                padding: 1em;
+                text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+
+        textarea {
+            white-space: pre-wrap;
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+    <title>Data Entry Form</title>
+</head>
+<body>
+
+    {% extends "base.html" %}
+    {% block title %}Home PageADMIN{% endblock %}
+    {% block content %}
+    <section>
+        <h2>Chi tiết danh mục</h2>
+        <form method="POST" class="fixhinh">
+            
+            <div class="form-group">
+                <label for="data1">ID</label>
+                <input type="text" id="id_bai" disabled value="{{ danh_muc_bai_viet.id_DM }}" name="id_bai" required>
+            </div>
+            <div class="form-group">
+                <label for="data2">Người đăng</label>
+                <input type="text" id=""disabled value="ADMIN" name="" required>
+            </div>
+            <div class="form-group">
+                <label for="data2">Ngày tạo</label>
+                <input type="text" id="formatted-date"disabled value="{{ danh_muc_bai_viet.ngay_tao_DM}}" name="" required>
+
+
+            </div>
+            <div class="form-group">
+                <label for="data2">danh mục</label>
+                <input type="text" id="title_DM"value="{{ danh_muc_bai_viet.ten_DM }}" name="ten_DM" required>
+            </div>
+
+            <button type="submit">Sửa</button>
+        </form>
+    </section>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#content' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+  // Lấy phần tử HTML
+  var formattedDateElement = document.getElementById('formatted-date');
+  
+  // Lấy giá trị ngày tháng từ phần tử HTML
+  var originalDate = formattedDateElement.innerText;
+
+  // Định dạng lại ngày tháng bằng moment.js
+  var formattedDate = moment(originalDate).format('DD/MM/YYYY');
+//   HH:mm:ss
+  // Gán giá trị mới cho phần tử HTML
+  formattedDateElement.innerText = formattedDate;</script>
+
+        {% endblock %}

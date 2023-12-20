@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}danh sách bài viết{% endblock %}</title>
+
+  <style>
+    .delete-button {
+           background-color: #f44336;
+           color: white;
+           border: none;
+           padding: 5px 10px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 12px;
+           cursor: pointer;
+       }
+
+       .edit-button {
+           background-color: #2196F3;
+           color: white;
+           border: none;
+           padding: 5px 10px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 12px;
+           cursor: pointer;
+       } 
+       .edit-button a {
+        text-decoration: none; 
+        color: #ffffff;
+
+       }
+       .edit-button a:hover {
+        text-decoration: none;  
+        color: #ffffff;
+
+       }
+</style>
+</head>
+
+<body>
+    
+
+    
+    {% block content %}
+    <section>
+<table>
+    <h2>DANH SÁCH BÀI VIẾT </h2>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tiêu đề</th>
+      <th>Người đăng</th>
+      <th>Loại tin</th>
+      <th>Hình ảnh</th>
+      <th>Ngày đăng</th>
+      <th>Lượt Xem</th>
+      <th>Trạng Thái</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody><button type="button" class="btn btn-primary edit-button"><a href="/admin/thembai">Thêm bài viết</a></button> 
+    {% for bai_viet in danh_sach_bai_viet %}
+      
+    <tr>
+      <td>{{bai_viet.id_bai}}</td>
+      <td>{{bai_viet.tieu_de}}</td>
+      <td>ADMIN</td>
+      <td>id={{bai_viet.danhmuc_id}}</td> 
+    
+
+      <td><img src="{{ url_for('static', filename='img/' + bai_viet.hinh_anh) }}" width="130px" alt="Hình ảnh"></td>
+      <td>{{bai_viet.ngay_tao_BV}}</td>
+      <td>{{bai_viet.so_luot_xem}}</td>
+      <td>Đã đăng</td>
+    </td>
+      <td class="action-buttons">
+
+ 
+        <button type="button" class="btn btn-primary edit-button"><a href="{{ url_for('sua_bai_viet', id=bai_viet.id_bai) }}" class="btn btn-primary edit-button">Sửa</a></button>
+        
+        
+        <button type="button" class="btn btn-danger edit-button"><a href="{{ url_for('xoa_bai_viet', id=bai_viet.id_bai) }}" class="btn btn-danger edit-button">Xóa</a></a></button>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</section>
+{% endblock %}

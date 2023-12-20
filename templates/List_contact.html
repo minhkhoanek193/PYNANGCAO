@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}danh sách bài viết{% endblock %}</title>
+
+  <style>
+    .delete-button {
+           background-color: #f44336;
+           color: white;
+           border: none;
+           padding: 5px 10px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 12px;
+           cursor: pointer;
+       }
+
+       .edit-button {
+           background-color: #2196F3;
+           color: white;
+           border: none;
+           padding: 5px 10px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 12px;
+           cursor: pointer;
+       } 
+       .edit-button a {
+        text-decoration: none; 
+        color: #ffffff;
+
+       }
+       .edit-button a:hover {
+        text-decoration: none;  
+        color: #ffffff;
+
+       }
+</style>
+</head>
+
+<body>
+    
+
+    
+    {% block content %}
+    <section>
+<table>
+    <h2>DANH SÁCH BÀI VIẾT </h2>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>tên khách</th>
+      <th>email</th>
+      <th>số điện thoại</th>
+      <th>nội dung</th>
+      <th>thao tác</th>
+
+    </tr>
+  </thead>
+  <tbody><button type="button" class="btn btn-primary edit-button"><a href="/admin/thembai">Thêm bài viết</a></button> 
+    {% for laylienhe in lienhe %}
+      
+    <tr>
+      <td>{{laylienhe.id_khach}}</td>
+      <td>{{laylienhe.ten_khach}}</td>
+      <td>{{laylienhe.email_khach}}</td>
+      <td>{{laylienhe.sdt_khach}}</td> 
+      <td>{{laylienhe.noidung}}</td>
+    </td>
+      <td class="action-buttons">
+
+ 
+        <button type="button" class="btn btn-primary edit-button">
+            <a href="{{ url_for('edit_contact', id=laylienhe.id_khach) }}" class="btn btn-primary edit-button">Xem</a></button>
+        
+        
+        <button type="button" class="btn btn-danger edit-button"><a href="{{ url_for('delete_contact', id=laylienhe.id_khach) }}" class="btn btn-danger edit-button">Xóa</a></a></button>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</section>
+{% endblock %}

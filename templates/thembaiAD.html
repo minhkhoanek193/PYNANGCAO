@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <style>
+        
+        .form-container {
+            background-color: #333;
+                color: #fff;
+                padding: 1em;
+                text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+        label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    select {
+        /* Tùy chỉnh giao diện dropdown */
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 8px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    button {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+
+      
+    </style>
+    <title>Data Entry Form</title>
+</head>
+<body>
+
+    {% extends "base.html" %}
+    
+    {% block content %}
+    <section>
+        <h2>THÊM BÀI VIẾT</h2>
+        <form method="POST" >
+            
+            <div class="form-group">
+                <label for="data1">ID</label>
+                <input type="text" id="id_bai" disabled  name="id_bai" required>
+            </div>
+            <div class="form-group">
+                <label for="data3">Hình ảnh</label>
+                <input type="file" id="image" name="img_bai" accept="image/*" required>
+
+                
+            </div>
+            <div class="form-group">
+                <label for="data2">tiêu đề</label>
+                <input type="text" id="title_bai" name="title_bai" required>
+            </div>
+            <div class="form-group">
+                <label for="data2">Danh mục</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>-- Chọn danh mục cho bài viết --</option>
+                    {% for danh_muc in danh_sach_danh_muc %}
+                    <option value="{{danh_muc.id_DM}}">{{danh_muc.ten_DM}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data4">nội dung</label>
+                <!-- <input type="text" id="data4" name="img_bai" required> -->
+                <textarea id="content"name="noidung_bai"  cols="10"></textarea>
+                
+            </div>
+
+            <button type="submit">Thêm</button>
+        </form>
+    </section>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#content' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
+
+        {% endblock %}

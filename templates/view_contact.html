@@ -1,0 +1,114 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <title>{% block title %}danh mục{% endblock %}</title>
+    <style>
+        
+        .form-container {
+            background-color: #333;
+                color: #fff;
+                padding: 1em;
+                text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+
+        textarea {
+            white-space: pre-wrap;
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+
+</head>
+<body>
+
+    {% extends "base.html" %}
+    {% block content %}
+    <section>
+        <h2>THÊM DANH MỤC</h2>
+        <form method="POST">
+            
+            <div class="form-group">
+                <label for="data1">ID</label>
+                <input type="text" id="id_DM" disabled value="{{ lienhe.id_khach }}" name="id" required>
+            </div>
+            <div class="form-group">
+                <label for="data3">tên</label>
+                <input type="text" id="id_DM" disabled value="{{ lienhe.ten_khach }}" name="name" required>
+                
+            </div>
+            <div class="form-group" >
+                <label for="data2">email</label>
+                <input type="text" id="title_DM"disabled value="{{ lienhe.email_khach }}" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="data3">số điện thoại</label>
+                <input type="text" id="id_DM" disabled value="{{ lienhe.sdt_khach }}" name="sdt" required>
+                
+            </div>
+            <div class="form-group">
+                <label for="data3">nội dung</label>
+                <input type="text" id="id_DM" disabled value="{{ lienhe.noidung }}" name="noidung" required>
+                
+            </div>
+            
+            <button type="submit"> <a href="/admin/contact">Quay lại</a></button>
+        </form>
+    </section>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#content' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
+
+        {% endblock %}

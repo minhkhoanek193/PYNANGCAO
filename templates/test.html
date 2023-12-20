@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ danh_muc.ten_DM }}</title>
+</head>
+<body>
+    <h1>{{ danh_muc.ten_DM }}</h1>
+
+    <ul>
+        {% for bai_viet in bai_viets %}
+            <li>{{ bai_viet.hinh_anh }}</li>
+            <li>{{ bai_viet.tieu_de }}</li>
+            <li>{{ bai_viet.noi_dung }}</li>
+            
+
+        {% endfor %}
+    </ul>
+</body>
+</html>
